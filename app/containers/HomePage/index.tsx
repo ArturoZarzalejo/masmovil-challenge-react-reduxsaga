@@ -63,11 +63,14 @@ const useStyles = makeStyles({
   },
   root: {
     padding: '20px',
-    flex: '0 0 50%',
+    flex: '0 0 33%',
     ['@media (max-width:500px)']: {
       flex: '0 0 100%',
     }
   },
+  media: {
+    objectFit: 'contain'
+  }
 });
 
 const key = 'home';
@@ -150,6 +153,7 @@ export default function HomePage(this: any) {
               <Card>
                 <CardActionArea>
                   <CardMedia
+                    className={classes.media}
                     component="img"
                     alt="Contemplative Reptile"
                     height="140"
