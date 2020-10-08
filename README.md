@@ -1,6 +1,6 @@
 # frontend-react-challenge
 
-npm run start to start the development client & server application.
+npm start to start the development client & server application.
 
 Phone Catalog App
 Your task is to write a very simple product catalog app.
