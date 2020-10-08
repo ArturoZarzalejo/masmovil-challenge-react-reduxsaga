@@ -12,7 +12,7 @@ import { makeSelectUsername } from 'containers/HomePage/selectors';
 /**
  * Github repos request/response handler
  */
-export function* getRepos() {
+export function* getPhones() {
   // Select username from store
   const username = yield select(makeSelectUsername());
   const requestURL = `http://localhost:3000/phones`;
@@ -29,10 +29,10 @@ export function* getRepos() {
 /**
  * Root saga manages watcher lifecycle
  */
-export default function* githubData() {
-  // Watches for LOAD_REPOS actions and calls getRepos when one comes in.
+export default function* phones() {
+  // Watches for LOAD_REPOS actions and calls getPhones when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
-  yield takeLatest(ActionTypes.LOAD_REPOS, getRepos);
+  yield takeLatest(ActionTypes.LOAD_REPOS, getPhones);
 }

@@ -5,8 +5,6 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -19,9 +17,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import LoadingIndicator from 'components/LoadingIndicator';
 
-
-// import { useInjectReducer } from 'utils/injectReducer';
-// import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 
 import {
@@ -29,14 +24,7 @@ import {
   makeSelectLoading,
   makeSelectRepos,
 } from 'containers/App/selectors';
-import AtPrefix from './AtPrefix';
-import CenteredSection from './CenteredSection';
-import Form from './Form';
-import Input from './Input';
-import Section from './Section';
-import messages from './messages';
 import { loadRepos, reposLoaded } from '../App/actions';
-import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -49,7 +37,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import githubData from './saga';
 
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -86,7 +73,7 @@ const useStyles = makeStyles({
 const key = 'home';
 
 const stateSelector = createStructuredSelector({
-  repos: makeSelectRepos(),
+  phones: makeSelectRepos(),
   username: makeSelectUsername(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
@@ -129,7 +116,7 @@ const DialogActions = withStyles((theme: Theme) => ({
 
 
 export default function HomePage(this: any) {
-  const { repos, username, loading, error } = useSelector(stateSelector);
+  const { phones, username, loading, error } = useSelector(stateSelector);
   const [count, setCount] = useState(-1);
 
   const theme = useTheme();
@@ -144,10 +131,10 @@ export default function HomePage(this: any) {
     dispatch(loadRepos())
   }, []);
 
-  const reposListProps = {
+  const phonesListProps = {
     loading: loading,
     error: error,
-    repos: repos,
+    phones: phones,
   };
 
   const classes = useStyles();
@@ -155,9 +142,9 @@ export default function HomePage(this: any) {
   return (
 
     <article>
-      {reposListProps.loading && <LoadingIndicator></LoadingIndicator>}
+      {phonesListProps.loading && <LoadingIndicator></LoadingIndicator>}
       <div className={classes.containerList}>
-        {reposListProps.repos?.map((item, index) => {
+        {phonesListProps.phones?.map((item, index) => {
           return (
             <div className={classes.root} key={index}>
               <Card>
